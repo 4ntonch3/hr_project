@@ -21,14 +21,12 @@ _GROUP_AND_PERMISSIONS = [
 
 
 class Command(BaseCommand):
-    help = "Create user groups with permissions"
+    help = 'Create user groups with permissions'
 
     def handle(self, *args: Any, **kwargs: Any) -> None:
         for role, permissions in _GROUP_AND_PERMISSIONS:
-            permissions = [permission.split(".")[1] for permission in permissions]
-            group_model = _GET_MODEL("auth", "Group")
+            permissions = [permission.split('.')[1] for permission in permissions]
+            group_model = _GET_MODEL('auth', 'Group')
             group, _ = group_model.objects.get_or_create(name=role)
-            permissions = AccessOrchestratorPermission.object.filter(
-                codename__in=permissions
-            )
+            permissions = AccessOrchestratorPermission.object.filter(codename__in=permissions)
             group.permissions.add(*permissions)
