@@ -1,0 +1,23 @@
+[flake8]
+select = CCE,CCR,ECE,U
+
+exclude = .git,__pycache__,*/migrations/*,venv/,tests/*
+
+unused-arguments-ignore-abstract-functions = true
+unused-arguments-ignore-overload-functions = true
+unused-arguments-ignore-override-functions = true
+unused-arguments-ignore-variadic-names = true
+
+ignore-django-orm-queries-complexity = true
+
+class_attributes_order = 
+    nested_class,
+    field,
+    meta_class,
+    magic_method,
+    property_method,
+    static_method,
+    class_method,
+    method,
+    protected_method,
+    private_method

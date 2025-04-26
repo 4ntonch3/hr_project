@@ -1,0 +1,2 @@
+class NetworkInteractionNotFoundError(Exception):
+    pass

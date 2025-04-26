@@ -7,8 +7,8 @@ class Department(models.Model):
     slug = models.CharField(max_length=3)
 
     class Meta:
-        verbose_name = "Департамент"
-        verbose_name_plural = "Департаменты"
+        verbose_name = 'Департамент'
+        verbose_name_plural = 'Департаменты'
 
 
 class User(AbstractUser):

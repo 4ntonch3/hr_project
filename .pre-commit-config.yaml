@@ -1,0 +1,38 @@
+exclude: '.git'
+default_stages: [commit]
+fail_fast: true
+
+repos:
+  - repo: local
+    hooks:
+      - id: ruff-static-analysis
+        name: ruff-static-analysis
+        entry: ruff
+        args: [check, --no-cache, --output-format, grouped]
+        language: system
+        types:
+          - python
+
+      - id: ruff-formating
+        name: ruff-formating
+        entry: ruff
+        args: [format, --check, --no-cache]
+        language: system
+        types:
+          - python
+
+      - id: flake8-static-analysis
+        name: flake8-static-analysis
+        entry: flake8
+        language: system
+        types:
+          - python
+      
+      - id: django-migrations
+        name: django-migrations
+        entry: python
+        args: [src/manage.py, makemigrations, --dry-run, --check]
+        language: system
+        pass_filenames: false
+        types:
+          - python
