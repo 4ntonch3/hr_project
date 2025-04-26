@@ -9,6 +9,7 @@ from apps.users.models import User
 
 
 class AccessGroupSource(models.Model):
+    public_id = models.CharField(verbose_name='Публичный ID', max_length=128, unique=True)
     network_zones = models.ManyToManyField(
         NetworkZone,
         verbose_name='Сетевые зоны',
@@ -50,20 +51,8 @@ class AccessGroup(models.Model):
         verbose_name_plural = 'Группы Доступа'
 
 
-class AccessGroup2PrefixSource(models.Model):
-    arch_resource_guid = models.CharField(verbose_name='ID Ресурса из архитектурного описания', max_length=128)
-    unactual_at = models.DateTimeField(verbose_name='Время потери актуальности', blank=True, null=True)
-    unactuality_reason = models.TextField(verbose_name='Обоснование потери актуальности', blank=True, null=True)
-    created_at = models.DateTimeField(verbose_name='Время создания', default=now)
-    updated_at = models.DateTimeField(verbose_name='Время последнего обновления', auto_now=True)
-
-
 class AccessGroup2Prefix(models.Model):
-    source = models.ForeignKey(
-        AccessGroup2PrefixSource,
-        on_delete=models.CASCADE,
-        verbose_name='Источник связи Группы Доступа и Префикса',
-    )
+    public_id = models.CharField(verbose_name='Публичный ID', max_length=128, unique=True)
     access_group = models.ForeignKey(
         AccessGroup,
         on_delete=models.CASCADE,
@@ -78,6 +67,8 @@ class AccessGroup2Prefix(models.Model):
         User,
         on_delete=models.PROTECT,
         verbose_name='Администратор, утвердивший связь',
+        blank=True,
+        null=True,
     )
 
     approved_at = models.DateTimeField(
@@ -93,7 +84,7 @@ class AccessGroup2Prefix(models.Model):
         verbose_name_plural = 'Связь Групп Доступа и Префиксов'
         constraints = [
             models.UniqueConstraint(
-                fields=['access_group', 'prefix', 'source'],
+                fields=['access_group', 'prefix'],
                 name='%(app_label)s_%(class)s_unique_access_group_to_prefix',
             )
         ]

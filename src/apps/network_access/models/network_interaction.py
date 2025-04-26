@@ -9,6 +9,7 @@ from apps.users.models import User
 
 
 class NetworkInteractionSource(models.Model):
+    public_id = models.CharField(verbose_name='Публичный ID', max_length=128, default=uuid.uuid4, unique=True)
     src_network_zone = models.ForeignKey(
         NetworkZone,
         on_delete=models.PROTECT,

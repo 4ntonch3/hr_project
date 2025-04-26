@@ -1,7 +1,14 @@
 version: '3'
 services:
-  interview_project:
-    image: interview_project
-    container_name: interview_project
+  db:
+    image: postgres:13.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
     ports:
-      - "8000:8000"
+        - 5432:5432
+    environment:
+      - POSTGRES_USER=test_app
+      - POSTGRES_PASSWORD=123qwe
+      - POSTGRES_DB=test_database
+volumes:
+  postgres_data:

@@ -93,7 +93,7 @@ class CreateNetworkInteractionUseCase:
 
         return ni_public_id
 
-    def _validate_protocol_to_ports(self, protocol_to_ports: dict[str, list[str]]) -> None:
+    def _validate_protocol_to_ports(self, protocol_to_ports: dict[str, list[str]]) -> None:  # noqa: CCR001
         if not protocol_to_ports:
             raise NoProtocolError('Не указано ни одного протокола')
 
