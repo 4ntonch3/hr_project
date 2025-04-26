@@ -4,3 +4,4 @@ flake8-class-attributes-order==0.1.3        # плагин для проверк
 flake8-cognitive-complexity==0.1.0          # плагин для проверки когнитивной сложности функции
 flake8-expression-complexity==0.0.11        # плагин для проверки когнитивной сложности выражений
 flake8-unused-arguments==0.0.9              # плагин для нахождения неиспользуемых аргументов
+pre-commit==4.2.0
