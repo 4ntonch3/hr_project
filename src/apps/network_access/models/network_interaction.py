@@ -57,12 +57,10 @@ class NetworkInteraction(models.Model):
         verbose_name='Группа Доступа назначения',
         related_name='network_interactions_where_dst',
     )
-    activity_initiator = models.ForeignKey(
+    creator = models.ForeignKey(
         User,
         on_delete=models.PROTECT,
-        verbose_name='Пользователь, активировавшие Сетевое Взаимодействие',
-        blank=True,
-        null=True,
+        verbose_name='Пользователь, создавший Сетевое Взаимодействие',
     )
 
     public_id = models.CharField(
