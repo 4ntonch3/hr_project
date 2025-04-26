@@ -1,0 +1,7 @@
+version: '3'
+services:
+  interview_project:
+    image: interview_project
+    container_name: interview_project
+    ports:
+      - "8000:8000"
