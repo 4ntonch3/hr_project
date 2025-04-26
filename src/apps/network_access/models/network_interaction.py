@@ -69,7 +69,6 @@ class NetworkInteraction(models.Model):
         default=uuid.uuid4,
         unique=True,
     )
-    creation_reason = models.TextField(verbose_name='Обоснование создания')
     activated_at = models.DateTimeField(verbose_name='Время активации', blank=True, null=True)
     created_at = models.DateTimeField(verbose_name='Время создания', default=now)
     updated_at = models.DateTimeField(verbose_name='Время последнего обновления', auto_now=True)

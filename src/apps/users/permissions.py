@@ -9,6 +9,7 @@ from rest_framework.viewsets import ViewSet
 class AccessOrchestratorPermission(Permission):
     class NetworkAccess(StrEnum):
         get_network_interaction = 'users.get_network_interaction'
+        create_network_interaction = 'users.create_network_interaction'
 
     class Meta:
         proxy = True
@@ -16,7 +17,11 @@ class AccessOrchestratorPermission(Permission):
             (
                 'users.get_network_interaction',
                 'Могу получить Сетевое Взаимодействие',
-            )
+            ),
+            (
+                'users.create_network_interaction',
+                'Могу создать Сетевое Взаимодействие',
+            ),
         ]
 
 

@@ -19,6 +19,7 @@ class AccessGroupSource(models.Model):
     arch_component_guid = models.CharField(verbose_name='ID Компонента из архитектурного описания', max_length=128)
     unactual_at = models.DateTimeField(verbose_name='Время потери актуальности', blank=True, null=True)
     unactuality_reason = models.TextField(verbose_name='Обоснование потери актуальности', blank=True, null=True)
+    creation_reason = models.TextField(verbose_name='Обоснование создания')
     created_at = models.DateTimeField(verbose_name='Время создания', default=now)
     updated_at = models.DateTimeField(verbose_name='Время последнего обновления', auto_now=True)
 
@@ -41,7 +42,6 @@ class AccessGroup(models.Model):
         unique=True,
     )
     name = models.TextField(verbose_name='Название')
-    creation_reason = models.TextField(verbose_name='Обоснование создания')
     created_at = models.DateTimeField(verbose_name='Время создания', default=now)
     updated_at = models.DateTimeField(verbose_name='Время последнего обновления', auto_now=True)
 

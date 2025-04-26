@@ -11,11 +11,17 @@ _GET_MODEL = django_apps.get_model
 _GROUP_AND_PERMISSIONS = [
     (
         UserGroup.ACCESS_ORCHESTRATOR_ADMIN,
-        [AccessOrchestratorPermission.NetworkAccess.get_network_interaction],
+        [
+            AccessOrchestratorPermission.NetworkAccess.get_network_interaction,
+            AccessOrchestratorPermission.NetworkAccess.create_network_interaction,
+        ],
     ),
     (
         UserGroup.STAND_ADMIN,
-        [AccessOrchestratorPermission.NetworkAccess.get_network_interaction],
+        [
+            AccessOrchestratorPermission.NetworkAccess.get_network_interaction,
+            AccessOrchestratorPermission.NetworkAccess.create_network_interaction,
+        ],
     ),
 ]
 
