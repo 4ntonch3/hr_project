@@ -12,7 +12,7 @@ from apps.network_access.use_cases.get_network_interaction.api.http.django.opena
 )
 from apps.network_access.use_cases.get_network_interaction.api.http.django.serializers import (
     GetNetworkInteractionPathSerializer,
-    GetNetworkInteractionResponseSerializer,
+    GetNetworkInteractionResponseBodySerializer,
 )
 from apps.network_access.use_cases.get_network_interaction.app_layer.use_case import (
     GetNetworkInteractionUseCase,
@@ -48,5 +48,5 @@ class GetNetworkInteractionView(PermissionRequiredMixin, viewsets.ViewSet):
             error = BaseErrorSerializer({'message': 'Сетевое Взаимодействие не найдено.'})
             return Response(error.data, status=HTTPStatus.NOT_FOUND)
 
-        response_serializer = GetNetworkInteractionResponseSerializer(data=ni)
+        response_serializer = GetNetworkInteractionResponseBodySerializer(data=ni)
         return Response(response_serializer.validated_data)
