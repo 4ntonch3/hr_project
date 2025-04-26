@@ -3,10 +3,10 @@ from http import HTTPStatus
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 
+from apps.core.serializers import BaseErrorSerializer
 from apps.network_access.use_cases.get_network_interaction.api.http.django.serializers import (
     GetNetworkInteractionResponseSerializer,
 )
-from src.apps.core.serializers import BaseErrorSerializer
 
 get_network_interaction_doc = swagger_auto_schema(
     operation_description='Получить Сетевое Взаимодействие',
