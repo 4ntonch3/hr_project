@@ -1,23 +1,24 @@
 # Interview Project
 
-## Работа с Docker
-
-### Сборка
+## Поднимаем базу
 
 ```sh
-docker build -t interview_project .
+docker-compose -f docker-compose.yml up -d
 ```
 
-### Запуск
-
-Docker RUN:
+## Устанавливаем зависимости
 
 ```sh
-docker run -it -d -p 8000:8000 --name interview_project interview_project
+pip install -r requirements.txt 
 ```
 
-Docker-Compose:
-
+## Запуск тестов
 ```sh
-docker-compose up -d
+pytest tests/
+```
+
+## Запуск линтеров
+```sh
+pre-commit install # при первом запуске
+pre-commit run --all-files
 ```
