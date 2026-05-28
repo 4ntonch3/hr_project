@@ -28,7 +28,7 @@ class NetworkAccessObjects:
 
 
 @pytest.fixture(scope='function')
-def elt_objects(elt_objects: ELTObjects) -> None:
+def init_elt_objects(elt_objects: ELTObjects) -> None:
     repo = CreateELTObjectsRepo()
     repo.create_elt_versions(elt_objects.elt_versions)
     repo.create_systems(elt_objects.elt_systems)
@@ -37,7 +37,7 @@ def elt_objects(elt_objects: ELTObjects) -> None:
 
 
 @pytest.fixture(scope='function')
-def network_access_objects(network_access_objects: NetworkAccessObjects) -> None:
+def init_network_access_objects(network_access_objects: NetworkAccessObjects) -> None:
     repo = CreateNetworkAccessObjectsRepo()
     repo.create_systems(network_access_objects.systems)
     repo.create_stands(network_access_objects.stands)
