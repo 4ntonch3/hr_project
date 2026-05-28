@@ -1,11 +1,5 @@
 # Interview Project
 
-## Поднимаем базу
-
-```sh
-docker-compose -f docker-compose.yml up -d
-```
-
 ## Устанавливаем зависимости
 
 ```sh

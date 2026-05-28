@@ -1,35 +1,43 @@
+from dataclasses import dataclass, field
+
 import pytest
-from pydantic import BaseModel, Field
 
 from tests.network_access.infra.django.dto import (
-    AccessGroup2PrefixDTO,
-    AccessGroupDTO,
-    AccessGroupSourceDTO,
-    NetworkInteractionDTO,
-    NetworkInteractionSourceDTO,
-    NetworkZoneDTO,
-    PrefixDTO,
+    ELTDeviceDTO,
+    ELTStandDTO,
+    ELTSystemDTO,
+    ELTVersionDTO,
+    StandDTO,
+    SystemDTO,
 )
-from tests.network_access.infra.django.repo import CreateNiEntitiesRepo
+from tests.network_access.infra.django.repo import CreateELTObjectsRepo, CreateNetworkAccessObjectsRepo
 
 
-class NetworkInteractionConfig(BaseModel):
-    network_zones: list[NetworkZoneDTO] = Field(default_factory=list)
-    prefixes: list[PrefixDTO] = Field(default_factory=list)
-    access_group_sources: list[AccessGroupSourceDTO] = Field(default_factory=list)
-    access_groups: list[AccessGroupDTO] = Field(default_factory=list)
-    access_groups_prefixes: list[AccessGroup2PrefixDTO] = Field(default_factory=list)
-    network_interaction_sources: list[NetworkInteractionSourceDTO] = Field(default_factory=list)
-    network_interactions: list[NetworkInteractionDTO] = Field(default_factory=list)
+@dataclass
+class ELTObjects:
+    elt_versions: list[ELTVersionDTO] = field(default_factory=list)
+    elt_systems: list[ELTSystemDTO] = field(default_factory=list)
+    elt_stands: list[ELTStandDTO] = field(default_factory=list)
+    elt_devices: list[ELTDeviceDTO] = field(default_factory=list)
+
+
+@dataclass
+class NetworkAccessObjects:
+    systems: list[SystemDTO] = field(default_factory=list)
+    stands: list[StandDTO] = field(default_factory=list)
 
 
 @pytest.fixture(scope='function')
-def network_interaction_entities(ni_entities_config: NetworkInteractionConfig) -> None:
-    repo = CreateNiEntitiesRepo()
-    repo.create_network_zones(ni_entities_config.network_zones)
-    repo.create_prefixes(ni_entities_config.prefixes)
-    repo.create_access_group_sources(ni_entities_config.access_group_sources)
-    repo.create_access_groups(ni_entities_config.access_groups)
-    repo.create_access_groups_prefixes(ni_entities_config.access_groups_prefixes)
-    repo.create_network_interaction_sources(ni_entities_config.network_interaction_sources)
-    repo.create_network_interactions(ni_entities_config.network_interactions)
+def elt_objects(elt_objects: ELTObjects) -> None:
+    repo = CreateELTObjectsRepo()
+    repo.create_elt_versions(elt_objects.elt_versions)
+    repo.create_systems(elt_objects.elt_systems)
+    repo.create_stands(elt_objects.elt_stands)
+    repo.create_devices(elt_objects.elt_devices)
+
+
+@pytest.fixture(scope='function')
+def network_access_objects(network_access_objects: NetworkAccessObjects) -> None:
+    repo = CreateNetworkAccessObjectsRepo()
+    repo.create_systems(network_access_objects.systems)
+    repo.create_stands(network_access_objects.stands)

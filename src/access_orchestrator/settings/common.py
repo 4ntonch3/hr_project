@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # local
     'apps.network_access',
     'apps.users',
+    'apps.elt',
     # 3rd party
     'knox',
     'drf_yasg',
